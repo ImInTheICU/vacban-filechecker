@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="vacban-filechecker.vcxproj" />
+  <Project Path="vacban-filechecker.vcxproj" Id="896c2732-51cc-4019-ba8c-bfd53553d79e" />
 </Solution>
