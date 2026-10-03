@@ -1,5 +1,8 @@
 #pragma once
 
+#include <lazy_importer.h>
+#include <advobfuscator/string.h>
+
 #include <cstdint>
 #include <filesystem>
 #include <optional>
@@ -7,6 +10,8 @@
 #include <string>
 #include <string_view>
 #include <vector>
+
+using namespace andrivet::advobfuscator;
 
 namespace vacban::checker {
 
@@ -59,7 +64,7 @@ namespace vacban::checker {
     private:
         static constexpr std::size_t RollWindow = 7;
         static constexpr std::uint32_t MinBlockSize = 3;
-        static constexpr std::string_view Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        static constexpr auto Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"_obf;
 
         struct RollingState {
             std::uint32_t h1 = 0;   // sum

@@ -12,7 +12,7 @@
 namespace vacban::checker {
 
     FileFingerprint::FileFingerprint(std::string signature) : signature_(std::move(signature)) {
-        const auto colon = signature_.find(':');
+        const auto colon = signature_.find(":"_obf);
         if (colon != std::string::npos) {
             try {
                 block_size_ = static_cast<std::uint32_t>(std::stoul(signature_.substr(0, colon)));
@@ -32,9 +32,9 @@ namespace vacban::checker {
         if (bs1 > bs2 * 4 || bs2 > bs1 * 4) return 0;
 
         auto extract_parts = [](std::string_view sig) -> std::pair<std::string_view, std::string_view> {
-            const auto c1 = sig.find(':');
+            const auto c1 = sig.find(":"_obf);
             if (c1 == std::string_view::npos) return {};
-            const auto c2 = sig.find(':', c1 + 1);
+            const auto c2 = sig.find(":"_obf, c1 + 1);
             if (c2 == std::string_view::npos) return { sig.substr(c1 + 1), {} };
             return { sig.substr(c1 + 1, c2 - c1 - 1), sig.substr(c2 + 1) };
             };
@@ -145,7 +145,8 @@ namespace vacban::checker {
 
         auto emit = [&](std::string& dest, std::uint32_t h) {
             if (dest.size() < FileFingerprint::kMaxSignatureLen) {
-                dest.push_back(Alphabet[h % Alphabet.size()]);
+                const auto& alpha = Alphabet.decode();
+                dest.push_back(alpha[h % alpha.size()]);
             }
             };
 
@@ -186,7 +187,7 @@ namespace vacban::checker {
         std::string p1, p2;
         compute(data, bs, p1, p2);
 
-        std::string sig = std::to_string(bs) + " - " + p1 + " - " + p2;
+        std::string sig = std::to_string(bs) + std::string(" - "_obf) + p1 + std::string(" - "_obf) + p2;
         FileFingerprint fp(std::move(sig));
         return fp;
     }

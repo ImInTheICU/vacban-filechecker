@@ -28,6 +28,16 @@
     <ClInclude Include="checker\checker.h" />
     <ClInclude Include="checker\fingerprint.h" />
     <ClInclude Include="network\auth.h" />
+    <ClInclude Include="security\advobfuscator\aes.h" />
+    <ClInclude Include="security\advobfuscator\aes_string.h" />
+    <ClInclude Include="security\advobfuscator\bytes.h" />
+    <ClInclude Include="security\advobfuscator\call.h" />
+    <ClInclude Include="security\advobfuscator\format.h" />
+    <ClInclude Include="security\advobfuscator\fsm.h" />
+    <ClInclude Include="security\advobfuscator\obf.h" />
+    <ClInclude Include="security\advobfuscator\random.h" />
+    <ClInclude Include="security\advobfuscator\string.h" />
+    <ClInclude Include="security\lazy_importer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
@@ -130,10 +140,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)security;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>RapePoint</EntryPointSymbol>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -152,10 +164,12 @@
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(ProjectDir)security;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EntryPointSymbol>RapePoint</EntryPointSymbol>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
